@@ -1,0 +1,93 @@
+name: AirGame-Essentials
+version: ${project.version}
+main: net.airgame.bukkit.essential.EssentialsPlugin
+api-version: 1.16
+
+authors: [ Hamster3 ]
+description: ${project.description}
+website: ${project.url}
+
+depend:
+  - AirGame-API
+
+permissions:
+  essentials.balance:
+    default: true
+    description: 查看自己的余额
+  essentials.economy.give:
+    default: op
+    description: 给 vault 账户添加余额
+  essentials.economy.take:
+    default: op
+    description: 从 vault 账户扣除余额
+  essentials.economy.set:
+    default: op
+    description: 设置 vault 账户的余额
+  essentials.enderchest:
+    default: op
+    description: 直接打开自己的末影箱
+  essentials.enderchest.other:
+    default: op
+    description: 查看他人的末影箱
+  essentials.exp.give:
+    default: op
+    description: 给予玩家经验
+  essentials.exp.take:
+    default: op
+    description: 扣除玩家经验
+  essentials.exp.see:
+    default: true
+    description: 查看自己的经验
+  essentials.exp.see.other:
+    default: op
+    description: 查看其他玩家的经验
+  essentials.feed:
+    default: op
+    description: 恢复自己的饱食度
+  essentials.feed.other:
+    default: op
+    description: 恢复其他玩家的饱食度
+  essentials.fly:
+    default: op
+    description: 设置自己的飞行模式开关
+  essentials.fly.other:
+    default: op
+    description: 设置其他玩家的飞行模式开关
+  essentials.gamemode:
+    default: op
+    description: 设置自己的游戏模式
+  essentials.gamemode.other:
+    default: op
+    description: 设置其他玩家的游戏模式
+  essentials.hat:
+    default: op
+    description: 将手持物品戴在头上
+  essentials.heal:
+    default: op
+    description: 恢复自己的生命值
+  essentials.heal.other:
+    default: op
+    description: 恢复其他玩家的生命值
+  essentials.invsee:
+    default: op
+    description: 查看其他玩家的背包
+  essentials.pay:
+    default: true
+    description: 给其他玩家转账
+  essentials.gc:
+    default: op
+    description: 查看服务器性能统计
+  essentials.seen:
+    default: op
+    description: 查看其他玩家的数据信息
+  essentials.sudo:
+    default: false
+    description: 强制让其他玩家执行命令
+  essentials.tpall:
+    default: op
+    description: 传送所有玩家到当前位置
+  essentials.tp:
+    default: op
+    description: 使用传送命令
+  essentials.tp.other:
+    description: 使用传送命令传送其他玩家
