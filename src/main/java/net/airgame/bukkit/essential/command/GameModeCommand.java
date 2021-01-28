@@ -9,7 +9,7 @@ import org.bukkit.entity.Player;
 
 @CommandExecutor(
         name = "gameMode",
-        aliases = {"gMode", "mode"}
+        aliases = {"gMode", "mode", "gm"}
 )
 @SuppressWarnings("unused")
 public class GameModeCommand {
