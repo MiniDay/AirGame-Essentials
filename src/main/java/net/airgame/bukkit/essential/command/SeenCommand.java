@@ -4,6 +4,7 @@ import net.airgame.bukkit.api.command.annotation.Command;
 import net.airgame.bukkit.api.command.annotation.CommandExecutor;
 import net.airgame.bukkit.api.command.annotation.Sender;
 import org.bukkit.OfflinePlayer;
+import org.bukkit.World;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -27,11 +28,18 @@ public class SeenCommand {
             sender.sendMessage("最后一次在线时间: " + format.format(player.getLastPlayed()));
         } else {
             sender.sendMessage("IP地址: " + onlinePlayer.getAddress());
-            sender.sendMessage("当前位置: " + onlinePlayer.getLocation());
+            World world = onlinePlayer.getWorld();
+            sender.sendMessage("当前位置: " + String.format("%s;%.2f;%.2f;%.2f",
+                    world.getName(),
+                    onlinePlayer.getLocation().getX(),
+                    onlinePlayer.getLocation().getY(),
+                    onlinePlayer.getLocation().getZ()
+            ));
             sender.sendMessage(String.format("当前生命值: %d / %d", (int) onlinePlayer.getHealth(), (int) (Objects.requireNonNull(onlinePlayer.getAttribute(Attribute.GENERIC_MAX_HEALTH)).getBaseValue())));
             sender.sendMessage(String.format("当前饱食度: %d / %d", onlinePlayer.getFoodLevel(), 20));
             sender.sendMessage("当前等级: " + onlinePlayer.getLevel());
             sender.sendMessage(String.format("当前氧气值: %d / %d", onlinePlayer.getRemainingAir(), onlinePlayer.getMaximumAir()));
         }
     }
+
 }

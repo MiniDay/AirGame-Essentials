@@ -1,15 +1,20 @@
-# 是否启用连锁破坏
-chainBreak: true
-# 是否启用宿管
-housemaster: true
-# 是否启用背包整理
-inventoryTweaks: true
-
 # 世界建筑高度限制
 buildHeightProtect:
   enable: true
   worlds:
     world_nether: 128
 
+# 是否启用连锁破坏
+chainBreak: true
+
+# 是否启用伤害报告
+damageReporter: true
+
 # 是否启用爆炸保护
 explodeProtect: true
+
+# 是否启用宿管
+housemaster: true
+
+# 是否启用背包整理
+inventoryTweaks: true
