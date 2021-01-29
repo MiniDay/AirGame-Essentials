@@ -60,6 +60,7 @@ public final class EssentialsPlugin extends JavaPlugin {
             logUtils.info("已启用背包整理模块.");
         }
         Bukkit.getScheduler().runTask(this, () -> serverStartTime = System.currentTimeMillis());
+        logUtils.info("插件启动完成.");
     }
 
     public long getServerStartTime() {
