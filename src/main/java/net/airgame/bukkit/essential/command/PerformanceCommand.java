@@ -9,6 +9,8 @@ import org.bukkit.Chunk;
 import org.bukkit.World;
 import org.bukkit.command.CommandSender;
 
+import java.lang.reflect.InvocationTargetException;
+
 
 @CommandExecutor(
         name = "performance",
@@ -18,7 +20,7 @@ import org.bukkit.command.CommandSender;
 @SuppressWarnings("unused")
 public class PerformanceCommand {
     @Command
-    public void performance(@Sender CommandSender sender) {
+    public void performance(@Sender CommandSender sender) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
         Runtime runtime = Runtime.getRuntime();
 
         sender.sendMessage("服务器内存报告: ");
@@ -33,6 +35,9 @@ public class PerformanceCommand {
             for (Chunk chunk : chunks) {
                 tiles += chunk.getTileEntities().length;
             }
+            Object handle = world.getClass().getMethod("getHandle").invoke(world);
+            long worldFullTime = (long) handle.getClass().getMethod("getTime").invoke(handle);
+
             sender.sendMessage(String.format(
                     "  %s: %,d 区块 %,d 实体(%,d 活动 | %,d 玩家)  %,d tiles 共计运行: %,d ticks(%,.2f 天)",
                     world.getName(),
@@ -41,8 +46,8 @@ public class PerformanceCommand {
                     world.getLivingEntities().size(),
                     world.getPlayers().size(),
                     tiles,
-                    world.getFullTime(),
-                    world.getFullTime() / 20.0 / 86400.0
+                    worldFullTime,
+                    worldFullTime / 20.0 / 86400.0
             ));
         }
         long time = (System.currentTimeMillis() - EssentialsPlugin.getInstance().getServerStartTime()) / 1000;

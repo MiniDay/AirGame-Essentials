@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
@@ -58,6 +58,10 @@
         <repository>
             <id>hamster3</id>
             <url>http://maven.hamster3.cn/repository/maven-public/</url>
+        </repository>
+        <repository>
+            <id>minecraft</id>
+            <url>https://crystal.app.lss233.com/repositories/minecraft</url>
         </repository>
     </repositories>
 
