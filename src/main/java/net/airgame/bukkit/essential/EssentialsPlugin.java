@@ -13,7 +13,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 public final class EssentialsPlugin extends JavaPlugin {
     private static EssentialsPlugin instance;
     private static LogUtils logUtils;
-    private long serverStartTime;
 
     public static EssentialsPlugin getInstance() {
         return instance;
@@ -59,12 +58,12 @@ public final class EssentialsPlugin extends JavaPlugin {
             Bukkit.getPluginManager().registerEvents(new InventoryTweaksListener(), this);
             logUtils.info("已启用背包整理模块.");
         }
-        Bukkit.getScheduler().runTask(this, () -> serverStartTime = System.currentTimeMillis());
+        Bukkit.getScheduler().runTask(this, () -> {
+            if (System.getProperties().getProperty("BukkitStartTime") == null) {
+                System.getProperties().setProperty("BukkitStartTime", String.valueOf(System.currentTimeMillis()));
+            }
+        });
         logUtils.info("插件启动完成.");
-    }
-
-    public long getServerStartTime() {
-        return serverStartTime;
     }
 
 }

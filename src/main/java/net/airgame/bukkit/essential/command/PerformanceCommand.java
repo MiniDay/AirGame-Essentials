@@ -3,7 +3,6 @@ package net.airgame.bukkit.essential.command;
 import net.airgame.bukkit.api.command.annotation.Command;
 import net.airgame.bukkit.api.command.annotation.CommandExecutor;
 import net.airgame.bukkit.api.command.annotation.Sender;
-import net.airgame.bukkit.essential.EssentialsPlugin;
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
 import org.bukkit.World;
@@ -50,7 +49,7 @@ public class PerformanceCommand {
                     worldFullTime / 20.0 / 86400.0
             ));
         }
-        long time = (System.currentTimeMillis() - EssentialsPlugin.getInstance().getServerStartTime()) / 1000;
+        long time = (System.currentTimeMillis() - Long.parseLong(System.getProperty("BukkitStartTime"))) / 1000;
         sender.sendMessage(String.format(
                 "服务器已运行 %d 月 %d 天 %d 小时 %d 分钟 %d 秒",
                 time / 2592000,
