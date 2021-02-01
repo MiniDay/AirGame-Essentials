@@ -21,8 +21,8 @@ public class GameModeCommand {
     }
 
     @Command(permission = "essentials.gameMode.other")
-    public void gameMode(@Sender CommandSender sender, Player player, GameMode mode) {
-        player.sendMessage(mode.name());
+    public void gameMode(@Sender CommandSender sender, GameMode mode, Player player) {
+        player.setGameMode(mode);
         player.sendMessage(sender.getName() + " 已将你的游戏模式已切换至 " + mode.name());
     }
 
