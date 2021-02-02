@@ -7,6 +7,11 @@ buildHeightProtect:
 # 是否启用连锁破坏
 chainBreak: true
 
+# 是否启用区块实体限制器
+chunkEntityLimit:
+  enable: true
+  limit: 20
+
 # 是否启用伤害报告
 damageReporter: true
 
