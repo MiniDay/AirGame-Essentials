@@ -106,14 +106,16 @@ public final class InventoryTweaksListener implements Listener {
             sortInventory.setItem(i + startIndex, stack);
         }
 
-        if (human instanceof Player && notifiedPlayer.add(uuid)) {
-            Player player = (Player) human;
+        if (notifiedPlayer.add(uuid)) {
             // 第一次整理成功时给出提示
             human.sendMessage("§a==================================================");
             human.sendMessage("§e[五彩方块] wow! 你刚刚完成了一次背包整理工作!");
             human.sendMessage("§e[五彩方块] 在五彩方块服务器, 只需要双击背包外空白区域!");
             human.sendMessage("§e[五彩方块] 即可快速整理任何容器内的物品!");
             human.sendMessage("§a==================================================");
+        }
+        if (human instanceof Player) {
+            Player player = (Player) human;
             Bukkit.getScheduler().runTaskLater(EssentialsPlugin.getInstance(), player::updateInventory, 1);
         }
     }
