@@ -43,9 +43,9 @@ public final class EssentialsPlugin extends JavaPlugin {
             logUtils.info("已启用连锁破坏模块.");
         }
         if (config.getBoolean("chunkEntityLimit.enable")) {
-            int limit = config.getInt("chunkEntityLimit.limit");
-            Bukkit.getPluginManager().registerEvents(new ChunkEntityLimitListener(limit), this);
-            logUtils.info("已启用区块实体限制器, 每区块最大实体数: %d.", limit);
+            ConfigurationSection limitConfig = config.getConfigurationSection("chunkEntityLimit.limits");
+            Bukkit.getPluginManager().registerEvents(new ChunkEntityLimitListener(limitConfig), this);
+            logUtils.info("已启用区块实体限制器.");
         }
         if (config.getBoolean("damageReporter")) {
             Bukkit.getPluginManager().registerEvents(new DamageReporterListener(), this);

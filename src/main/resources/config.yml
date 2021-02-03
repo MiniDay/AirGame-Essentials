@@ -10,7 +10,9 @@ chainBreak: true
 # 是否启用区块实体限制器
 chunkEntityLimit:
   enable: true
-  limit: 20
+  limits:
+    animals: 15
+    monsters: 40
 
 # 是否启用伤害报告
 damageReporter: true

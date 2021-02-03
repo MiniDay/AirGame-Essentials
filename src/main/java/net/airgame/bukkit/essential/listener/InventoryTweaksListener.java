@@ -95,7 +95,7 @@ public final class InventoryTweaksListener implements Listener {
             );
         }
 
-        sortStacks.sort(ItemSorter.instance);
+        sortStacks.sort(ItemSorter.INSTANCE);
 
         // 把排好序之后的物品set进Inventory里
         for (int i = 0; i < endIndex - startIndex; i++) {
