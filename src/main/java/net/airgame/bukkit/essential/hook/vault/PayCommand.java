@@ -1,4 +1,4 @@
-package net.airgame.bukkit.essential.command;
+package net.airgame.bukkit.essential.hook.vault;
 
 import net.airgame.bukkit.api.command.annotation.Command;
 import net.airgame.bukkit.api.command.annotation.CommandExecutor;

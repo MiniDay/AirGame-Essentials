@@ -25,3 +25,7 @@ housemaster: true
 
 # 是否启用背包整理
 inventoryTweaks: true
+
+# 是否启用 Vault 指令
+# pay、money、balTop、eco 等
+vaultCommand: false

@@ -1,7 +1,11 @@
 package net.airgame.bukkit.essential;
 
 import net.airgame.bukkit.api.command.annotation.CommandScan;
+import net.airgame.bukkit.api.manager.CommandManager;
 import net.airgame.bukkit.api.util.LogUtils;
+import net.airgame.bukkit.essential.hook.vault.BalanceCommand;
+import net.airgame.bukkit.essential.hook.vault.EconomyCommand;
+import net.airgame.bukkit.essential.hook.vault.PayCommand;
 import net.airgame.bukkit.essential.listener.*;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
@@ -62,6 +66,16 @@ public final class EssentialsPlugin extends JavaPlugin {
         if (config.getBoolean("inventoryTweaks")) {
             Bukkit.getPluginManager().registerEvents(new InventoryTweaksListener(), this);
             logUtils.info("已启用背包整理模块.");
+        }
+        if (config.getBoolean("vaultCommand")) {
+            try {
+                CommandManager.registerCommand(this, BalanceCommand.class);
+                CommandManager.registerCommand(this, EconomyCommand.class);
+                CommandManager.registerCommand(this, PayCommand.class);
+                logUtils.info("已启用 Vault 指令支持.");
+            } catch (Exception e) {
+                logUtils.error(e, "启用 Vault 指令支持时遇到了一个错误: ");
+            }
         }
         Bukkit.getScheduler().runTask(this, () -> {
             if (System.getProperties().getProperty("BukkitStartTime") == null) {
