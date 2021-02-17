@@ -1,6 +1,6 @@
 package net.airgame.bukkit.essential;
 
-import net.airgame.bukkit.api.command.annotation.CommandScan;
+import net.airgame.bukkit.api.annotation.CommandScan;
 import net.airgame.bukkit.api.manager.CommandManager;
 import net.airgame.bukkit.api.util.LogUtils;
 import net.airgame.bukkit.essential.hook.vault.BalanceCommand;

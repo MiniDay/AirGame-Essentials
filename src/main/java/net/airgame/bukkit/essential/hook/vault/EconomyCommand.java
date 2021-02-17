@@ -1,8 +1,8 @@
 package net.airgame.bukkit.essential.hook.vault;
 
-import net.airgame.bukkit.api.command.annotation.Command;
-import net.airgame.bukkit.api.command.annotation.CommandExecutor;
-import net.airgame.bukkit.api.command.annotation.Sender;
+import net.airgame.bukkit.api.annotation.Command;
+import net.airgame.bukkit.api.annotation.CommandExecutor;
+import net.airgame.bukkit.api.annotation.Sender;
 import net.airgame.bukkit.api.util.api.EconomyAPI;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;

@@ -1,16 +1,19 @@
 package net.airgame.bukkit.essential.command;
 
-import net.airgame.bukkit.api.command.annotation.Command;
-import net.airgame.bukkit.api.command.annotation.CommandExecutor;
-import net.airgame.bukkit.api.command.annotation.Sender;
+import net.airgame.bukkit.api.annotation.Command;
+import net.airgame.bukkit.api.annotation.CommandExecutor;
+import net.airgame.bukkit.api.annotation.Sender;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-@CommandExecutor(name = "fly")
+@CommandExecutor(
+        name = "fly",
+        permission = "essentials.fly"
+)
 @SuppressWarnings("unused")
 public class FlyCommand {
 
-    @Command(permission = "essentials.fly")
+    @Command
     public void fly(@Sender Player player) {
         player.setAllowFlight(!player.getAllowFlight());
         player.sendMessage(String.format(
@@ -28,7 +31,7 @@ public class FlyCommand {
         ));
     }
 
-    @Command(permission = "essentials.fly")
+    @Command
     public void fly(@Sender Player player, boolean b) {
         player.setAllowFlight(b);
         player.sendMessage(String.format(

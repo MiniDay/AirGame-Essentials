@@ -1,8 +1,8 @@
 package net.airgame.bukkit.essential.command;
 
-import net.airgame.bukkit.api.command.annotation.Command;
-import net.airgame.bukkit.api.command.annotation.CommandExecutor;
-import net.airgame.bukkit.api.command.annotation.Sender;
+import net.airgame.bukkit.api.annotation.Command;
+import net.airgame.bukkit.api.annotation.CommandExecutor;
+import net.airgame.bukkit.api.annotation.Sender;
 import net.airgame.bukkit.api.util.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;

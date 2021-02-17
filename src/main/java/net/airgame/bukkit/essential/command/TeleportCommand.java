@@ -1,8 +1,8 @@
 package net.airgame.bukkit.essential.command;
 
-import net.airgame.bukkit.api.command.annotation.Command;
-import net.airgame.bukkit.api.command.annotation.CommandExecutor;
-import net.airgame.bukkit.api.command.annotation.Sender;
+import net.airgame.bukkit.api.annotation.Command;
+import net.airgame.bukkit.api.annotation.CommandExecutor;
+import net.airgame.bukkit.api.annotation.Sender;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.command.CommandSender;
@@ -14,7 +14,8 @@ import org.bukkit.event.player.PlayerTeleportEvent;
         name = "tp",
         description = "传送指令",
         aliases = {"teleport", "mtp"},
-        usage = "/tp 位置"
+        usage = "/tp 位置",
+        permission = "essentials.tp"
 )
 @SuppressWarnings("unused")
 public class TeleportCommand {
@@ -35,13 +36,13 @@ public class TeleportCommand {
         player.sendMessage(String.format("%s 已将你传送至当前位置.", sender.getName()));
     }
 
-    @Command(permission = "essentials.tp")
+    @Command
     public void tp(@Sender Entity entity, Location location) {
         entity.teleport(location, PlayerTeleportEvent.TeleportCause.PLUGIN);
         entity.sendMessage(String.format("已传送至位置 %s", location));
     }
 
-    @Command(permission = "essentials.tp")
+    @Command
     public void tp(@Sender Entity entity, Player player) {
         if (entity == player) {
             entity.sendMessage("§c你不能传送你自己!");
@@ -51,7 +52,7 @@ public class TeleportCommand {
         entity.sendMessage(String.format("已传送至 %s 的位置.", player.getName()));
     }
 
-    @Command(permission = "essentials.tp")
+    @Command
     public void tp(@Sender Entity entity, World world) {
         entity.teleport(world.getSpawnLocation(), PlayerTeleportEvent.TeleportCause.PLUGIN);
         entity.sendMessage(String.format("已传送至世界 %s 的出生点.", world.getName()));
