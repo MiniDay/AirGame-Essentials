@@ -59,10 +59,6 @@
             <id>hamster3</id>
             <url>http://maven.hamster3.cn/repository/maven-public/</url>
         </repository>
-        <repository>
-            <id>minecraft</id>
-            <url>https://crystal.app.lss233.com/repositories/minecraft</url>
-        </repository>
     </repositories>
 
     <dependencies>
