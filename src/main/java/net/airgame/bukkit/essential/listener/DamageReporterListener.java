@@ -34,20 +34,20 @@ public class DamageReporterListener implements Listener {
         }
         Player player = (Player) damager;
         LivingEntity livingEntity = (LivingEntity) entity;
-        int health = (int) (livingEntity.getHealth() - event.getFinalDamage());
+        double health = livingEntity.getHealth() - event.getFinalDamage();
         if (health > 0) {
             MessageUtils.sendActionBar(player,
                     String.format(
-                            "§a本次攻击造成 %d 点伤害. §c剩余血量: %d / %d",
-                            (int) event.getFinalDamage(),
+                            "§a本次攻击造成 %.2f 点伤害. §c剩余血量: %.2f / %.2f",
+                            event.getFinalDamage(),
                             health,
-                            (int) livingEntity.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue()
+                            livingEntity.getAttribute(Attribute.GENERIC_MAX_HEALTH).getValue()
                     )
             );
         } else {
             MessageUtils.sendActionBar(player,
                     String.format(
-                            "§a本次攻击造成 %d 点伤害. §c目标已死亡.", (int) event.getFinalDamage()
+                            "§a本次攻击造成 %.2f 点伤害. §c目标已死亡.", event.getFinalDamage()
                     )
             );
         }
