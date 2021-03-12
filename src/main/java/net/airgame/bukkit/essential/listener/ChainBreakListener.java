@@ -131,12 +131,12 @@ public class ChainBreakListener implements Listener {
 
         int cancelledCount = 0;
         for (Block breakBlock : breakBlocks) {
-            // 我们需要重新调用一次BlockBreakEvent事件
+            // 我们需要重新调用一次 BlockBreakEvent 事件
             // 这样可以让其他插件检查一遍玩家是否允许破坏这个方块
             // 不然玩家可能可以利用连锁破坏来拆毁其他玩家的家
             BlockBreakEvent blockBreakEvent = new BlockBreakEvent(breakBlock, player);
-            // 同时我们需要把这个BlockBreakEvent添加到忽略事件中
-            // 不然onChainBreak这个事件处理器会再一次尝试“连锁破坏”那个方块
+            // 同时我们需要把这个 BlockBreakEvent 添加到忽略事件中
+            // 不然 onChainBreak 这个事件处理器会再一次尝试 [连锁破坏] 那个方块
             // 最终造成无限递归让服务器假死
             ignoreEvents.add(blockBreakEvent);
             Bukkit.getPluginManager().callEvent(blockBreakEvent);
@@ -147,9 +147,21 @@ public class ChainBreakListener implements Listener {
             breakBlock.breakNaturally(stack);
         }
 
+
         int damage = breakBlocks.size() - cancelledCount;
-        if (damage == 0) {
+
+        int leaveSize = 0;
+
+        if (damage <= 0) {
             return;
+        }
+
+        // 树叶的耐久值损坏只计入 25%
+        for (Block breakBlock : breakBlocks) {
+            if (breakBlock.getType().name().contains("_LEAVES")) {
+                leaveSize++;
+            }
+            damage -= leaveSize * 0.75;
         }
 
         int level = stack.getEnchantmentLevel(Enchantment.DURABILITY);
@@ -157,10 +169,10 @@ public class ChainBreakListener implements Listener {
         int itemDurability = damageable.getDamage() + damage;
         if (itemDurability > stack.getType().getMaxDurability()) {
             player.getInventory().setItemInMainHand(null);
-            return;
+        } else {
+            damageable.setDamage(itemDurability);
+            stack.setItemMeta((ItemMeta) damageable);
         }
-        damageable.setDamage(itemDurability);
-        stack.setItemMeta((ItemMeta) damageable);
 
         UUID uuid = player.getUniqueId();
         if (notifiedPlayer.contains(uuid)) {
