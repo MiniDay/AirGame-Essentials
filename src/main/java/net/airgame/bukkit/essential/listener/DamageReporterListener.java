@@ -1,6 +1,6 @@
 package net.airgame.bukkit.essential.listener;
 
-import net.airgame.bukkit.api.util.ChatTextUtils;
+import net.airgame.bukkit.api.util.AirGameUtils;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
@@ -36,7 +36,7 @@ public class DamageReporterListener implements Listener {
         LivingEntity livingEntity = (LivingEntity) entity;
         double health = livingEntity.getHealth() - event.getFinalDamage();
         if (health > 0) {
-            ChatTextUtils.sendActionBar(player,
+            AirGameUtils.sendActionBar(player,
                     String.format(
                             "§a本次攻击造成 %.2f 点伤害. §c剩余血量: %.2f / %.2f",
                             event.getFinalDamage(),
@@ -45,7 +45,7 @@ public class DamageReporterListener implements Listener {
                     )
             );
         } else {
-            ChatTextUtils.sendActionBar(player,
+            AirGameUtils.sendActionBar(player,
                     String.format(
                             "§a本次攻击造成 %.2f 点伤害. §c目标已死亡.", event.getFinalDamage()
                     )
