@@ -12,14 +12,27 @@
     <name>AirGame-Essentials</name>
 
     <description>五彩方块服务器的基础插件</description>
+    <url>https://github.com/MiniDay/AirGame-Essentials</url>
+
     <properties>
         <java.version>1.8</java.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-    <url>https://github.com/MiniDay/AirGame-Essentials</url>
 
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.2.0</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -28,22 +41,6 @@
                     <source>${java.version}</source>
                     <target>${java.version}</target>
                 </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-shade-plugin</artifactId>
-                <version>3.2.4</version>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>shade</goal>
-                        </goals>
-                        <configuration>
-                            <createDependencyReducedPom>false</createDependencyReducedPom>
-                        </configuration>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
         <resources>
@@ -56,10 +53,17 @@
 
     <repositories>
         <repository>
-            <id>hamster3</id>
-            <url>http://maven.hamster3.cn/repository/maven-public/</url>
+            <id>hamster-repo</id>
+            <url>http://maven.hamster3.cn/maven-public</url>
         </repository>
     </repositories>
+
+    <distributionManagement>
+        <repository>
+            <id>hamster-repo</id>
+            <url>http://maven.hamster3.cn/hamster-repo</url>
+        </repository>
+    </distributionManagement>
 
     <dependencies>
         <dependency>
