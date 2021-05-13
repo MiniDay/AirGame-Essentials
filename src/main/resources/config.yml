@@ -26,6 +26,11 @@ housemaster: true
 # 是否启用背包整理
 inventoryTweaks: true
 
-# 是否启用 Vault 指令
-# pay、money、balTop、eco 等
-vaultCommand: false
+# 投射物自动清理
+projectileClean:
+  # 是否启用
+  enable: true
+  # 投射物生成后多少毫秒才会被清理
+  clearDelay: 60000
+  # 每多少 ticks 检测一次投射物清理
+  clearInterval: 1200

@@ -1,11 +1,7 @@
 package net.airgame.bukkit.essential;
 
 import net.airgame.bukkit.api.annotation.CommandScan;
-import net.airgame.bukkit.api.manager.CommandManager;
 import net.airgame.bukkit.api.util.LogUtils;
-import net.airgame.bukkit.essential.hook.vault.BalanceCommand;
-import net.airgame.bukkit.essential.hook.vault.EconomyCommand;
-import net.airgame.bukkit.essential.hook.vault.PayCommand;
 import net.airgame.bukkit.essential.listener.*;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
@@ -40,42 +36,40 @@ public final class EssentialsPlugin extends JavaPlugin {
         if (config.getBoolean("buildHeightProtect.enable")) {
             ConfigurationSection section = config.getConfigurationSection("buildHeightProtect");
             Bukkit.getPluginManager().registerEvents(new BuildHeightProtectListener(section), this);
-            logUtils.info("已启用建筑高度限制器.");
+            logUtils.info("已启用 BuildHeightProtectListener.");
         }
         if (config.getBoolean("chainBreak")) {
             Bukkit.getPluginManager().registerEvents(new ChainBreakListener(), this);
-            logUtils.info("已启用连锁破坏模块.");
+            logUtils.info("已启用 ChainBreakListener.");
         }
         if (config.getBoolean("chunkEntityLimit.enable")) {
             ConfigurationSection limitConfig = config.getConfigurationSection("chunkEntityLimit.limits");
             Bukkit.getPluginManager().registerEvents(new ChunkEntityLimitListener(limitConfig), this);
-            logUtils.info("已启用区块实体限制器.");
+            logUtils.info("已启用 ChunkEntityLimitListener.");
         }
         if (config.getBoolean("damageReporter")) {
             Bukkit.getPluginManager().registerEvents(new DamageReporterListener(), this);
-            logUtils.info("已启用伤害汇报模块.");
+            logUtils.info("已启用 DamageReporterListener.");
         }
         if (config.getBoolean("explodeProtect")) {
             Bukkit.getPluginManager().registerEvents(new ExplodeProtectListener(), this);
-            logUtils.info("已启用爆炸保护模块.");
+            logUtils.info("已启用 ExplodeProtectListener.");
         }
         if (config.getBoolean("housemaster")) {
             Bukkit.getPluginManager().registerEvents(new HousemasterListener(), this);
-            logUtils.info("已启用宿管模块.");
+            logUtils.info("已启用 HousemasterListener.");
         }
         if (config.getBoolean("inventoryTweaks")) {
             Bukkit.getPluginManager().registerEvents(new InventoryTweaksListener(), this);
-            logUtils.info("已启用背包整理模块.");
+            logUtils.info("已启用 InventoryTweaksListener.");
         }
-        if (config.getBoolean("vaultCommand")) {
-            try {
-                CommandManager.registerCommand(this, BalanceCommand.class);
-                CommandManager.registerCommand(this, EconomyCommand.class);
-                CommandManager.registerCommand(this, PayCommand.class);
-                logUtils.info("已启用 Vault 指令支持.");
-            } catch (Exception e) {
-                logUtils.error(e, "启用 Vault 指令支持时遇到了一个错误: ");
-            }
+        if (config.getBoolean("projectileClean.enable")) {
+            int clearDelay = config.getInt("projectileClean.clearDelay");
+            int clearInterval = config.getInt("projectileClean.clearInterval");
+            ProjectileCleanListener listener = new ProjectileCleanListener(clearDelay);
+            Bukkit.getPluginManager().registerEvents(listener, this);
+            listener.runTaskTimer(this, clearInterval, clearInterval);
+            logUtils.info("已启用 ProjectileCleanListener.");
         }
         Bukkit.getScheduler().runTask(this, () -> {
             if (System.getProperties().getProperty("BukkitStartTime") == null) {
